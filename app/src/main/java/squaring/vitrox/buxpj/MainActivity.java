@@ -1,5 +1,6 @@
 package squaring.vitrox.buxpj;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
@@ -62,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
         mButtonGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+               final ProgressDialog progress = ProgressDialog.show(MainActivity.this, "Loading",
+                        "getting details", true);
                 service.getJsonDetail(selectedId)
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.newThread())
@@ -71,11 +74,14 @@ public class MainActivity extends AppCompatActivity {
                                 Log.d(TAG, "RestAPI_DONE");
                                 Intent intent = new Intent(getApplicationContext(), DetailsActivity.class);
                                 startActivity(intent);
+                                progress.dismiss();
                             }
 
                             @Override
                             public void onError(Throwable e) {
+                                progress.dismiss();
                                 SendErrorMessage(e.getMessage());
+
                             }
 
                             @Override
