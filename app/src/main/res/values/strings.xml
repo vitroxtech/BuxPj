@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BuxPj</string>
+    <string name="inputLabel">Choose your product </string>
+    <string name="currentLabel">Current Price</string>
+    <string name="closingLabel">Closing price</string>
+    <string name="percentValue">Value Difference </string>
+
+    <string name="mainText">You can see on realtime the stock price for the selected product </string>
+</resources>
